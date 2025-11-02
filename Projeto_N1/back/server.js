@@ -13,9 +13,11 @@ app.use(express.json());
 
 
 const postRoutes = require('./routes/post');
-
+const commentRoutes = require('./routes/comments');
 
 app.use('/posts', postRoutes);
+app.use('/comments', commentRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
