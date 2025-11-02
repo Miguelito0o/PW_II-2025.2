@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import PostCard from '../components/PostCard';
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -15,10 +15,7 @@ function Home() {
     <div>
       <h1>Posts</h1>
       {posts.map(post => (
-        <div key={post._id}>
-          <h2>{post.title}</h2>
-          <Link to={`/posts/${post._id}`}>Ver detalhes</Link>
-        </div>
+        <PostCard key={post._id} post={post} />
       ))}
     </div>
   );
