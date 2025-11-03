@@ -1,0 +1,116 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #000; 
+  color: #e6e6e6;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: transparent;
+}
+
+h1, h2 {
+  color: #e6e6e6;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.post-card {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: background-color 0.2s ease;
+  color: #ffffff;
+}
+
+.post-card:hover {
+  background-color: #222;
+}
+
+.post-card a {
+  color: #1da1f2;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.post-card a:hover {
+  text-decoration: underline;
+}
+
+input, textarea {
+  width: 100%;
+  background-color: #111;
+  color: #e6e6e6;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #888;
+}
+
+button {
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #0d8ddb;
+}
+
+.header {
+  background-color: #000;
+  border-bottom: 1px solid #333;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: #1da1f2;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.nav-links a {
+  color: #e6e6e6;
+  text-decoration: none;
+  margin-left: 1rem;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #1da1f2;
+}
+
+.form-group {
+      width: 100%;
+  background-color: #111;
+  color: #e6e6e6;
+  border-radius: 8px;
+  padding: 0.3rem;
+  margin-bottom: 1.5rem;
+}

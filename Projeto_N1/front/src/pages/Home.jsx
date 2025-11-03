@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PostCard from '../components/PostCard';
+import '../style/style.css';
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -12,8 +13,8 @@ function Home() {
   }, []);
 
   return (
-    <div>
-      <h1>Posts</h1>
+    <div className="container">
+      <h1 className="page-title">Posts</h1>
       {posts.map(post => (
         <PostCard key={post._id} post={post} />
       ))}

@@ -4,6 +4,7 @@ import axios from 'axios';
 import PostContent from '../components/PostContent';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
+import '../style/style.css';
 
 function PostDetail() {
   const { id } = useParams();
@@ -46,7 +47,7 @@ function PostDetail() {
   if (!post) return <p>Carregando post...</p>;
 
   return (
-    <div>
+    <div className="container">
       <PostContent post={post} />
       <hr />
       <h2>Comentários</h2>
