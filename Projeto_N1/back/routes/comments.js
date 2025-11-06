@@ -11,10 +11,13 @@ router.get('/:postId', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
-  const { postId, user, text } = req.body;
+const auth = require('../middleware/auth');
 
-  if (!postId || !user || !text) {
+router.post('/', auth, async (req, res) => {
+  const { postId, text } = req.body;
+  const user = req.user.name;
+
+  if (!postId || !text) {
     return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
   }
 
@@ -26,5 +29,6 @@ router.post('/', async (req, res) => {
     res.status(500).json({ message: 'Erro ao criar comentário' });
   }
 });
+
 
 module.exports = router;

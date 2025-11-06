@@ -6,32 +6,32 @@ import '../style/style.css';
 function CreatePost() {
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
-  const [user, setUser] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title || !text || !user) return;
+    if (!title || !text) return;
+
 
     try {
-      const res = await axios.post('http://localhost:3000/posts', {
+      const token = localStorage.getItem('token');
+      await axios.post('http://localhost:3000/posts', {
         title,
-        text,
-        user
+        text
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
       });
-      navigate(`/`);
+
+      navigate('/');
     } catch (error) {
       console.error('Erro ao criar post:', error);
     }
-  };
+  }
 
   return (
     <div className="container">
       <h2>Criar novo post</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <input type="text" placeholder="Autor" value={user} onChange={(e) => setUser(e.target.value)} />
-        </div>
         <div className="form-group">
           <input type="text" placeholder="Título" value={title} onChange={(e) => setTitle(e.target.value)} />
         </div>

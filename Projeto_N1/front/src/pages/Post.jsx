@@ -11,7 +11,6 @@ function PostDetail() {
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
-  const [user, setUser] = useState('');
 
   useEffect(() => {
     axios.get(`http://localhost:3000/posts/${id}`)
@@ -27,16 +26,21 @@ function PostDetail() {
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
-    if (!newComment || !user) return;
+    if (!newComment) return;
+
+    const token = localStorage.getItem('token');
+    const userName = localStorage.getItem('userName');
 
     try {
       await axios.post('http://localhost:3000/comments', {
         postId: id,
-        user,
+        user: userName,
         text: newComment
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
       });
+
       setNewComment('');
-      setUser('');
       const res = await axios.get(`http://localhost:3000/comments/${id}`);
       setComments(res.data);
     } catch (error) {
@@ -53,9 +57,7 @@ function PostDetail() {
       <h2>Comentários</h2>
       <CommentList comments={comments} />
       <CommentForm
-        user={user}
         text={newComment}
-        setUser={setUser}
         setText={setNewComment}
         onSubmit={handleCommentSubmit}
       />

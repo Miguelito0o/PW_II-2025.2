@@ -14,10 +14,12 @@ const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/post');
 const commentRoutes = require('./routes/comments');
 
+app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/comments', commentRoutes);
-app.use('/users', userRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
+

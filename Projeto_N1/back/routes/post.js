@@ -23,20 +23,32 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
-    const { title, text, user} = req.body;
-    if (!user || !title || !text){
-        return res.status(400).json({ message: 'Todos os campos são obrigatórios'});
-    }
+const auth = require('../middleware/auth');
 
-    try{
-        const newPost = new Post({title, text, user});
-        await newPost.save();
-        res.status(201).json(newPost);
-    }
-    catch(error){
-        res.status(500).json({ message: 'Erro ao criar post'});
-    }
+const jwt = require('jsonwebtoken');
+
+router.post('/', async (req, res) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) return res.status(401).json({ message: 'Token ausente' });
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const { title, text } = req.body;
+
+    const newPost = new Post({
+      title,
+      text,
+      user: decoded.name
+    });
+
+    await newPost.save();
+    res.status(201).json({ message: 'Post criado com sucesso' });
+  } catch (error) {
+    console.error('Erro ao criar post:', error);
+    res.status(500).json({ message: 'Erro ao criar post' });
+  }
 });
+
+
 
 module.exports = router;
